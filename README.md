@@ -2,11 +2,11 @@
 
 ![images](http://i.imgur.com/bC1OMNR.jpg)
 
-<sub>*before and after post-processing*</sub>
+<sub>*before and after post-processing – click [here](http://jam3.github.io/threejs-post-process-example) for a live demo*</sub>
 
 ---
 
-This is an example of advanced post-processing effects in [ThreeJS](http://threejs.org/), including FXAA and Color Lookup Table transforms.
+This is an example of post-processing effects in [ThreeJS](http://threejs.org/), including FXAA and Color Lookup Table transforms.
 
 This example also provides some insight into the development workflow at Jam3, and how we scale WebGL experiences like the [Mustang Customizer](http://www.ford.com/cars/mustang/customizer/).
 
@@ -56,11 +56,11 @@ npm run build
 
 ## Effects
 
-### FXAA
+##### FXAA
 
 For an optimized Fast Approximate Antialiasing (FXAA) shader, we use [three-shader-fxaa](https://github.com/mattdesl/three-shader-fxaa).
 
-### Color Lookup Transforms
+##### Color Lookup Transforms
 
 We use [glsl-lut](https://github.com/mattdesl/glsl-lut) for the efficient color lookup transforms.
 
