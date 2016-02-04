@@ -1,3 +1,9 @@
+/*
+  This is a generic "ThreeJS Application"
+  helper which sets up a scene, geometry,
+  vignette background, and camera controls.
+ */
+
 const OrbitControls = require('three-orbit-controls')(THREE);
 const createBackground = require('three-vignette-background');
 

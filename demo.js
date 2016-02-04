@@ -1,17 +1,20 @@
 /*
-  ## LESSON 1
+  Example with post-processing.
+  Renders the scene with an EffectComposer,
+  using FXAA and Color Lookup Table transforms.
 
-  Renders the scene directly to the <canvas>, with
-  MSAA and no post-processing.
+    npm run start
  */
 
+// Require our modules
 global.THREE = require('three');
-const glslify = require('glslify');
-const createLoop = require('raf-loop');
 const createApp = require('./app');
+const createLoop = require('raf-loop');
 const createFXAA = require('three-shader-fxaa');
 const EffectComposer = require('three-effectcomposer')(THREE);
+const glslify = require('glslify');
 
+// Create our basic ThreeJS application
 const {
   renderer,
   camera,
@@ -19,6 +22,7 @@ const {
   updateProjectionMatrix
 } = createApp();
 
+// Create a new offscreen framebuffer
 const target = new THREE.WebGLRenderTarget(window.innerWidth, window.innerHeight);
 target.texture.stencil = false;
 target.texture.minFilter = THREE.LinearFilter;
@@ -26,6 +30,7 @@ target.texture.magFilter = THREE.LinearFilter;
 target.texture.format = THREE.RGBFormat;
 target.texture.generateMipmaps = false;
 
+// Create a new composer for post-processing
 const composer = new EffectComposer(renderer, target);
 
 // Copy scene to framebuffer
@@ -46,7 +51,7 @@ const lut = new EffectComposer.ShaderPass({
 composer.addPass(lut);
 
 // Setup our lookup table for the color transform shader
-const tLookup = new THREE.TextureLoader().load('images/original.png');
+const tLookup = new THREE.TextureLoader().load('images/lookup.png');
 tLookup.generateMipmaps = false;
 tLookup.minFilter = THREE.LinearFilter;
 lut.uniforms.tLookup.value = tLookup;
@@ -68,14 +73,16 @@ createLoop(() => {
     }
   });
 
+  // Render scene with post-processing
   updateProjectionMatrix();
-  if (composer.passes.length > 1) composer.render();
-  else renderer.render(scene, camera);
+  composer.render();
 }).start();
 
 window.addEventListener('resize', resize);
 
 function resize () {
+  // We need to resize the composer carefully to
+  // make sure it looks good at all sizes!
   const dpr = renderer.getPixelRatio();
   const targets = [
     composer.renderTarget1,
