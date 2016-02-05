@@ -8,7 +8,7 @@
 
 This is an example of post-processing effects in [ThreeJS](http://threejs.org/), including FXAA and Color Lookup Table transforms.
 
-This example also provides some insight into the development workflow at Jam3, and how we scale WebGL experiences like the [Mustang Customizer](http://www.ford.com/cars/mustang/customizer/).
+This example also provides some insight into the development workflow at Jam3, and how we scale and re-use code across some of our WebGL experiences.
 
 To build this demo, we used the following tools:
 
