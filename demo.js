@@ -1,7 +1,7 @@
 /*
   Example with post-processing.
   Renders the scene with an EffectComposer,
-  using FXAA and Color Lookup Table transforms.
+  using FXAA and Lookup Table color transforms.
 
     npm run start
  */
@@ -39,7 +39,7 @@ composer.addPass(new EffectComposer.RenderPass(scene, camera));
 // Add the FXAA shader
 composer.addPass(new EffectComposer.ShaderPass(createFXAA()));
 
-// Add the Color Lookup Table shader
+// Add the Lookup Table shader
 const lut = new EffectComposer.ShaderPass({
   vertexShader: glslify(__dirname + '/shaders/pass.vert'),
   fragmentShader: glslify(__dirname + '/shaders/lut.frag'),
