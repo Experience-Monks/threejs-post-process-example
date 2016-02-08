@@ -70,7 +70,7 @@ function createApp (opt = {}) {
     background.style({
       aspect: aspect,
       aspectCorrection: true,
-      grainScale: 1.5 / Math.min(width, height)
+      grainScale: 0
     });
 
     // Update camera matrices
